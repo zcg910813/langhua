@@ -1,0 +1,134 @@
+<view class="main">
+<swiper indicator-dots="true" autoplay="true" interval="{{interval}}" duration="{{duration}}" circular="true">
+        <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+            <swiper-item>
+                <image src="{{item}}" class="slide-image" width="100%"/>
+            </swiper-item>
+        </block>
+    </swiper>
+    <!--首单免费弹框-->
+<!--mask--> 
+<view class="drawer_screen" wx:if="{{mianfei}}" bindtap='close'></view> 
+<!--content--> 
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{mianfei}}"> 
+<view class="btn_ok" wx:if="{{mianfei}}">
+<image src='/image/sdmf.png' class="addShop" bindtap='addShop'></image>
+</view> 
+</view>
+    <!-- <view class="activity">
+      <image src='/image/huodong.png' class="activity_img"></image>
+    </view> -->
+       <!-- <view class="categroy-left">
+        <view wx:for="{{category}}" wx:key="index" data-id="{{item.caterory}}" data-index="{{index}}"
+            class="cate-list {{curIndex === index?'on':''}}" bindtap='getProducts'>
+            {{item.title}}
+            </view>
+    </view>     -->
+         <!-- <scroll-view class="categroy-right" scroll-y="{{isScroll}}" scroll-into-view="{{toView}}" scroll-with-animation="true">
+       <view class="list-box">
+          <view class="">
+              <image src="{{GoodsImageUrls}}" class="newest-list"></image>
+               <view class="newest-text" wx:for="{{products}}" wx:key="{{index}}" bindtap='goDetails' data-index="{{index}}" data-id="{{item.GoodsId}}">
+        <text class="price {{activeds[index]?'actived': ''}}">{{item.GoodsName}}/￥{{item.Price}}</text>
+      </view> 
+              </view>
+             </view>
+    </scroll-view>    -->
+   <scroll-view class="categroy-right" scroll-y="{{isScroll}}" scroll-into-view="{{toView}}" scroll-with-animation="true">
+      <view class="list-box" data-index="{{index}}">
+          <image src="{{products1[0].GoodsImageUrl}}" class="newest-list" bindtap='_imgid_a' data-index="{{index}}"></image> 
+          <text class="top_title" bindtap='_imgid_a'>{{products1[0].GoodsName}}</text>
+          <text bindtap='_imgid_a'>清凉夏日嗨啤畅饮一起狂欢把</text>
+          <text bindtap='_imgid_a'>更大容量 更多欢喜</text>
+          <view class="newest-text"  wx:for="{{products1}}" wx:key="{{index}}" hidden="{{flag}}" bindtap="goDetails" data-index="{{index}}" data-id="{{item.GoodsId}}">
+            <text class="price {{curIndex === index?'on':''}}">{{item.GoodsName}}</text>
+            <text class='price_a'>￥{{item.Price}}</text>
+          </view>
+      </view>
+      <view class="list-box" data-index="{{index}}">
+          <image src="{{products2[0].GoodsImageUrl}}" class="newest-list" bindtap="_imgid_b" data-index="{{index}}"></image> 
+          <text class="top_title" bindtap="_imgid_b">{{products2[0].GoodsName}}</text>
+          <text bindtap="_imgid_b">清凉夏日嗨啤畅饮一起狂欢把</text>
+          <text bindtap="_imgid_b">更大容量 更多欢喜</text>
+          <view class="newest-text"  wx:for="{{products2}}" wx:key="{{index}}" hidden="{{flag}}" bindtap="goDetails" data-index="{{index}}" data-id="{{item.GoodsId}}">
+            <text class="price {{activeds[index]?'actived': ''}}">{{item.GoodsName}}</text>
+            <text class='price_a'>￥{{item.Price}}</text>
+          </view>
+      </view>
+      <view class="list-box" data-index="{{index}}">
+          <image src="{{products3[0].GoodsImageUrl}}" class="newest-list" bindtap="_imgid_c" data-index="{{index}}"></image> 
+          <text class="top_title" bindtap="_imgid_c">{{products3[0].GoodsName}}</text>
+          <text bindtap="_imgid_c">清凉夏日嗨啤畅饮一起狂欢把</text>
+          <text bindtap="_imgid_c">更大容量 更多欢喜</text>
+          <view class="newest-text"  wx:for="{{products3}}" wx:key="{{index}}" hidden="{{flag}}" bindtap="goDetails" data-index="{{index}}" data-id="{{item.GoodsId}}">
+            <text class="price {{activeds[index]?'actived': ''}}">{{item.GoodsName}}</text>
+            <text class='price_a'>￥{{item.Price}}</text>
+          </view>
+      </view>  
+      <view class="list-box" data-index="{{index}}">
+      <image src="https://mp.wavehops.com/appimg/shop_1.jpg" class="shop_1"></image>
+      </view>  
+      <view class="list-box" data-index="{{index}}">
+      <image src="https://mp.wavehops.com/appimg/shop_2.jpg" class="shop_2"></image>
+      </view>  
+  </scroll-view>    
+
+    <view class="modal-mask" wx:if="{{showMask}}"></view>
+    <view class="modal-dialog" wx:if="{{showSQModal}}">
+      <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" type='mini'>去往授权界面</button>
+    </view>   
+    <!-- 购物车 -->
+<view class="shade" hidden="{{_flag}}">
+    <view class='particulars_top'>
+        <text>套餐购买更优惠！</text>
+    </view>
+    <view class="particulars_center">
+         <view class="particulars_top_n" wx:for="{{goodssmall}}" data-index="{{index}}" >
+         <icon  wx:if="{{item.selected}}" type="circle" class="cart-pro-select_a"  color="#fff" /> 
+          <icon wx:else data-index="{{index}}" type="success" color="#fff" class="cart-pro-select_a" />
+          <view class='goodsName' data-index="{{index}}">  
+              <text>{{item.goodsName}}</text>
+              <text>原价:￥{{item.OldPrice}}</text>
+              <text>现价:￥{{item.Price}}</text>            
+          </view>
+          <view class="purchase-box">
+                        <text class="purchase-down" bindtap="subCount" data-index="{{index}}">-</text>
+                        <text class="purchase-num">{{item.num}}</text>
+                        <text class="purchase-add" bindtap="addCount" data-index="{{index}}">+</text>
+            </view>
+        </view> 
+    </view>
+    <view class="particulars_bottom">
+      <view>  
+          <text>￥{{totalPrice}}</text>
+          <text>多种包装 配送时任选</text>
+      </view>
+       <view class="purchase-box_c">
+            <text class="purchase-join" bindtap="addToCart">加入购物车</text>
+            <text class="purchase-buy" bindtap="NowPay">立即购买</text>
+        </view>
+    </view>
+    <!-- <view class="particulars_top">
+          <view class="particulars_top_n">
+            <text class="goods-tab-nav {{curIndex_a === 0 ?'on':''}}" bindtap="bindTap_a" data-index="0">商品</text>
+            <text class="goods-tab-nav {{curIndex_a === 0 ?'on':''}}" bindtap="bindTap_a" data-index="1">参数</text>            
+          </view>
+    </view>
+    <view class="message">
+             <view wx:if="{{curIndex_a === 0}}">
+              <image src="{{GoodsImageUrls}}"></image>
+             </view>
+            <view wx:if="{{curIndex_a === 1}}">{{2}}</view>
+    </view> 
+    <view class="purchase"> 
+          <text class="buy_num">购买数量</text>
+          <view class="purchase-box">
+                    <text class="purchase-down" bindtap="subCount">-</text>
+                    <text class="purchase-num">{{num}}</text>
+                    <text class="purchase-add"bindtap="addCount">+</text>
+          </view>
+    </view>
+  <button class="addTshop" bindtap="addToCart">加入购物车</button> -->
+</view>
+</view>
+<view class="bg" hidden="{{_flag}}" bindtap='b'></view> 

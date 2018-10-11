@@ -1,0 +1,14 @@
+<view class = "item" wx:for="{{couponList}}"  wx:key="index">
+  <view class = "address" data-index="{{item.index}}" data-id="{{item.Id}}" data-money="{{item.RealScore}}" data-time="{{item.AbortTime}}">
+  <!-- <view wx:if="{{selectIndex==item.Id}}">
+    <image src ="../../../image/check.jpg"  mode="widthFix"/> 
+  </view>
+  <view wx:else>
+    <image src ="../../../image/uncheck.png"  mode="widthFix"/> 
+  </view> -->
+  <view class = "info">
+    <text>金额：￥{{item.money}}</text>
+    <text>过期时间：{{item.dueTime}}</text>
+  </view>
+ </view>
+</view>

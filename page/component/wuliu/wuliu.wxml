@@ -1,0 +1,7 @@
+<view class = "item">
+  <view class = "address">
+    订单状态：{{wldata.order_status}}
+    骑手姓名：{{wldata.carrier_driver_name}}
+    骑手电话：{{wldata.carrier_driver_phone}}
+ </view>
+</view>

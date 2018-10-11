@@ -1,0 +1,65 @@
+.form-box{
+    padding-left: 30rpx;
+}
+.form-box picker{
+    width: 560rpx;
+    font-size:32rpx;
+    color:#242325;
+    margin-top:28rpx;
+    float:right;
+    padding-left: 12rpx;
+}
+.form-box button{
+    width:692rpx;
+    height:97rpx;
+    float:left;
+    background:linear-gradient(to left,#001b5f,#1eafec);
+    font-size: 36rpx;
+    line-height:97rpx;
+    text-align: center;
+    color:#fff;
+    border-radius:50rpx;
+
+}
+.address_city{
+  color:#0f66a6;
+}
+.addressName{
+  width:100%;
+  height:59rpx;
+  float:left;
+  margin-bottom:63rpx;
+  position:relative;
+}
+.addressName text{
+  float:left;
+  font-size:32rpx;
+  color:#242325;
+  margin-top:28rpx;
+}
+.addressName input{
+  float:left;
+  font-size:32rpx;
+  color:#242325;
+  margin-top:24rpx;
+  padding-left:12rpx;
+  caret-color: #0f66a6;
+  width:500rpx;
+}
+.addressName ._xz{
+  position:absolute;
+  font-size:32rpx;
+  color:#979796;
+  right:98rpx;
+  top:28rpx;
+}
+.addressName image{
+  width:15rpx;
+  height:27rpx;
+  position:absolute;
+  right:58rpx;
+  top:37rpx;
+}
+#address_xx{
+  color:#979796;
+}

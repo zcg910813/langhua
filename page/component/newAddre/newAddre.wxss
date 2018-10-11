@@ -1,0 +1,18 @@
+.form-box{
+    padding-left: 30rpx;
+}
+.form-box input{
+    height: 90rpx;
+    border-bottom: 1rpx solid #ededed;
+    /* color: #999; */
+}
+.form-box picker{
+    height: 80rpx;
+    border-bottom: 1rpx solid #ededed;
+    color: #999;
+    margin-top:15rpx;
+}
+.form-box button{
+    margin:30rpx 30rpx 0 0;
+}
+

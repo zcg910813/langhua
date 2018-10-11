@@ -1,0 +1,24 @@
+<view class="main">
+    <view class="form-box">
+    <form bindsubmit="formSubmit" report-submit="true">
+      <view>
+      <view>
+        <input type="text" name = "name" placeholder="{{name}}" focus="{{focus}}"/>
+      </view>
+      <view>
+        <input name="phone" type="number" placeholder="{{tel}}"  focus="{{focus}}"/>
+      </view>
+      <view>
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}"> 
+        {{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}
+        <input name="city" type="hidden" hidden='true' value="{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}"/>
+        </picker>
+    </view>
+      <view>
+        <input name="door" type="text" placeholder="{{door}}"  focus="{{focus}}"/>
+      </view>
+    </view>
+    <button formType="submit" >保存</button>
+    </form>
+  </view>
+</view>

@@ -1,0 +1,79 @@
+<view class="main">
+    <navigator url="../chooseAddre/chooseAddre?id={{user_address.id}}&sourcePage=page/component/orders/orders">
+        <view wx:if="{{hasAddress}}" class="orders-address" style='background:{{dizhiBg}};color:{{zitiColor}}'>
+            <text class="orders-address-name">收货人: {{user_address.name}}</text>
+            <text class="orders-address-phone">电话: {{user_address.phone}}</text>
+            <view class="orders-address-detail">收货地址: {{user_address.addr}}</view>
+        </view>
+        <view wx:else class="orders-no-address">请选择收货地址</view>       
+    </navigator>
+    <view class="delivery">
+      <text>配送方式 ：</text>
+      <radio-group class="radio-group" bindchange="radioChange">
+        <radio value='1' bindtap='Peisong'>配送</radio>
+        <radio value='2' bindtap='Ziti'>自提</radio>
+      </radio-group>
+    </view>
+    <view class="orders-box">
+        <view class="order_time">
+            <text>送达时间</text>
+            <text>今天{{start_time}}--{{end_time}}</text>
+            <image src='/image/look.png' class="look_img"></image>
+        </view>
+        <view class="all_orders-list" bindtap='img_return'>
+              <view wx:for="{{orders}}" wx:key="{{item.OrderId}}" class="orders-list">
+                <image class="orders-thumb" src="{{item.GoodsImageUrl}}"></image>               
+            <!-- <view class="orders-pro-name">{{item.GoodsName}}</view>
+            <view class="orders-pro-price">￥{{item.nPrice}}</view>
+            <view class="orders-pro-count">×{{item.count}}</view> -->
+            </view>
+                <view class="orders-pro-nun">共{{amount}}件</view>
+                <image src='/image/look.png' class="order_img"></image>
+        </view>       
+    </view>
+
+      <view class="in_total">
+            <view class="in_total_a">
+                <text>商品总价</text>
+                <text>￥{{totalPrice}}</text>
+            </view>
+            <navigator url="../coupon/coupon?id={{coupon.id}}" class="in_total_b">
+                <image src='/image/red.png' class="red_img"></image>
+                <text>红包</text>
+                <text>￥{{coupon.nMoney}}</text>
+                <image src='/image/look.png' class="look_img"></image>
+            </navigator>
+            <!-- <view class="in_total_a">
+                <text>商品实付</text>
+                <text>￥{{totalPrice}}</text>
+            </view> -->
+            <view class="in_total_a">
+                <text>运费</text>
+                <text>￥{{yunFei}}</text>
+            </view>
+            <view class="in_total_c">
+                <text>合计</text>
+                <text>{{orderPrice}}</text>
+            </view>
+        </view>
+      <view class="still">
+          <text>还需支付</text>
+          <text>￥{{orderPrice}}</text>
+      </view>
+    <view class="orders-yhq" wx:if="{{isFirstOrder}}">
+        <view>新用户首单，只需支付0.01元</view>
+    </view>
+    <view class="orders-footer">
+        <view class="orders-footer-total">付款：<text class="Order" >￥{{orderPrice}}</text> </view>
+        <button class="Itembtn" hover-class="btnhover" bindtap="toPay">去支付</button>
+    </view>
+
+    <!--营业时间遮罩层-->
+    <view class="shade" hidden="{{_flag}}">
+       <image src='/image/opening_hours.png'></image>
+       <text>{{work_begin_time}}</text>
+       <text>~</text>
+       <text>{{work_end_time}}</text>
+    </view>
+</view>
+<view class="bg" hidden="{{_flag}}" bindtap='b'></view> 

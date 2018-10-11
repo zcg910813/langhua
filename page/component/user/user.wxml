@@ -1,0 +1,117 @@
+<view class="main">
+    <view class="header">
+        <image src="{{thumb}}" class="thumb"></image>
+        <text class="nickname">{{nickname}}</text>
+         <contact-button class="about" type="default-light" size="20" session-from="weapp" bindtap='Img_change'></contact-button>
+          <image src='{{serviceUrl}}' class="_contact" ></image>             
+         <view class="aline">在线客服</view> 
+        <!-- <text class="about">关于我们</text> -->
+    </view>
+    <view class="address-box_one">
+        <!-- <view class="address-manage_one">
+            <navigator url="/page/component/order_form/order_form">我的订单
+            <view class="">
+                <text>查看全部订单</text>
+                <text></text>
+            </view>
+        </view> -->
+        <view class="address-manage_one">
+            <view>我的订单</view>
+            <view class="examine" bindtap='skip_d'>
+                <text>查看全部订单</text>
+                <text></text>
+            </view>
+        </view>
+        <view class="avait">
+            <view class="obligation" bindtap='skip_a'>
+              <image src='/image/obligatio_a.png' class="_img"></image>
+              <text>待付款</text>
+            </view>
+            <view class="obligation" bindtap='skip_b'>
+              <image src='/image/obligatio_b.png' class="_img"></image>
+              <text>已付款</text>
+            </view>
+            <view class="obligation" bindtap='skip_c'>
+              <image src='/image/obligatio_c.png' class="_img"></image>
+              <text>已完成</text>
+            </view>
+        </view>
+    </view>
+    <view class="address-box">
+        <image src='/image/red.png'></image>
+        <view class="address-manage">
+            <navigator url="/page/component/couponList/couponList">我的优惠券</navigator>
+        </view>
+    </view>
+    <view class="address-box">
+        <image src="/image/address.png"></image>
+        <view class="address-manage">
+            <navigator url="/page/component/addrList/addrList">我的地址</navigator>
+        </view>
+    </view>
+    <!-- <view class="address-box">
+        <image src="/image/relation.png"></image>
+        <view class="address-manage">
+            <navigator>联系客服</navigator>
+        </view>
+    </view> -->
+    
+    <!-- <view class="orders-box">
+        <view class="orders">我的订单</view>
+        <view wx:if="{{hasOrder}}">
+        <view class="orders-list" wx:for="{{orders}}" wx:key="{{index}}">
+            <view class="orders-number">订单编号：{{item.OrderId}}</view>
+            <view class="orders-detail" wx:for="{{item.AllGoods}}" wx:for-item="goods" wx:key="{{index}}">
+                <image src="{{goods.GoodsImageUrl}}"></image>
+                <view class="">{{goods.GoodsName}}</view>
+                <view class="">x {{goods.BuyCount}}</view>
+                <text class="orders-status">￥{{goods.nPrice}}</text>
+            </view>
+            <view class="orders-footer">
+                <view>实付：<text class="orders-status">￥{{item.nTotalPrice}}</text></view>
+                <view wx:if="{{item.OrderState == 0}}">
+                  <button size="mini" class="orders-btn" bindtap="payOrders" data-id="{{item.OrderId}}">付款</button>
+                </view>
+                <view wx:if="{{item.OrderState == 1 || item.OrderState == 2 ||item.OrderState == 3}}">
+                 <text class='orders-text'>已经支付,等待接单</text>
+                </view>
+                <view wx:if="{{item.OrderState == 4}}">
+                 <text class="orders-text">系统已接单</text>
+                </view>
+                <view wx:if="{{item.OrderState == 5}}">
+                 <text class="orders-text">已分配骑手</text>
+                </view>
+                <view wx:if="{{item.OrderState == 6}}">
+                 <text class="orders-status-text">骑手已到店</text>
+                </view>
+                <view wx:if="{{item.OrderState == 7}}">
+                 <text class="orders-text">配送中</text>
+                </view>
+                <view wx:if="{{item.OrderState == 8}}" class='.orders-status-text'>
+                 <text>已送达</text>
+                </view>
+                 <view wx:if="{{item.OrderState == 9}}">
+                 <text class=".orders-status-text"> 配送异常</text>
+                </view>
+                <view wx:if="{{item.OrderState > 3}}" class="orders-status-btn-3" >
+                  <button size="mini" bindtap="queryeleorder" data-id="{{item.OrderId}}">查看物流</button>
+                </view>
+                 <view wx:if="{{item.OrderState == 8 || item.OrderState == 9}}" class="orders-delete-btn">
+                  <button size="mini" data-id="{{item.OrderId}}" bindtap="deleteOrders">删除</button>
+                </view> 
+            </view>
+        </view>
+        </view>
+        <view wx:else>
+          <view class='no-orders'>您还没有订单～</view>
+        </view>
+      <view class="modal-mask" wx:if="{{showMask}}"></view>
+      <view class="modal-dialog" bindtap="wldetail" wx:if="{{showWLModal}}" style="">
+      <view class='wl'><view class="modal-dialog-pro-name">姓名</view>
+      <view class="modal-dialog-pro-value">{{wlInfo.carrier_driver_name}}</view></view>
+      <view class='wl'><view class="modal-dialog-pro-name">电话</view>
+      <view class="modal-dialog-pro-value" bindtap='callPhone' data-phone='{{wlInfo.carrier_driver_phone}}'>{{wlInfo.carrier_driver_phone}}</view></view>
+      <view class="gb"><button bindtap='onclosewl' type='default' size='mini'>关闭</button></view>
+    </view>
+      </view> -->
+</view>

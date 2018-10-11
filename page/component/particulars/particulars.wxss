@@ -1,0 +1,11 @@
+/* page/component/particulars/particulars.wxss */
+@import '../../common/common.wxss';
+.main{
+  width:100%;
+  height:auto;
+  float:left;
+}
+.main image{
+  width:750rpx;
+  height:3176rpx;
+}

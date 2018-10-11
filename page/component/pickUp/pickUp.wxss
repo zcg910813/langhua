@@ -1,0 +1,89 @@
+/* page/component/pickUp/pickUp.wxss */
+@import '../../common/common.wxss';
+.main{
+  width:100%;
+  height:100%;
+  background: #fff;
+}
+.pickUp{
+  width:730rpx;
+  height:210rpx;
+  float:left;
+  margin-left:30rpx;
+  background:#fff;
+  border-bottom:1rpx solid #eee;
+  position:relative;
+}
+.pick_name{
+    font-size:28rpx; 
+    font-weight:bold;
+    color: #000;
+    width:100%;
+    height:90rpx;
+    line-height:90rpx;
+}
+.pick_time{
+  width:100%;
+  height:20rpx;
+  float:left;
+  font-size:20rpx;
+  color:#9d9d9d;
+}
+.pick_time_a{
+  width:20rpx;
+  height:20rpx;
+  float:left;
+  margin-top:4rpx;
+  margin-right:15rpx;
+}
+.pick_time text:nth-child(2){
+  float:left;
+}
+.pick_time text:nth-child(3){
+  float:right;
+  margin-right:30rpx;
+  color:#000;
+  font-weight:bold;
+}
+.pick_address{
+  width:500rpx;
+  height: 52rpx;
+  float:left;
+  font-size:#949494;
+  font-size:24rpx;
+  margin-top:24rpx;
+}
+.pick_address_b{
+  width: 18rpx;
+  height:23rpx;
+  float:left;
+  margin-top:4rpx;
+  margin-right:15rpx;
+}
+.pick_address text:last-child{
+  width:470rpx;
+  height: 52rpx;
+  font-size:#949494;
+  font-size:24rpx;
+  margin-top:24rpx;
+}
+
+.pick_look{
+  color:#91abbc;
+  position:absolute;
+  right:30rpx;
+  bottom:60rpx;
+  height:22rpx;
+}
+.pick_look text:nth-child(1){
+  font-size:22rpx;
+  color:#91abbc;
+  height:22rpx;
+}
+.pick_right{
+    width: 24rpx;
+    height:24rpx;
+    float: right;
+    margin-top:15rpx;
+    margin-left:8rpx;
+}

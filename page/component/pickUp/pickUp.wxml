@@ -1,0 +1,19 @@
+<!--page/component/pickUp/pickUp.wxml-->
+<view class="main">
+  <view class="pickUp" wx:for="{{pickdonw_a}}" key="{{index}}" data-index="{{index}}" data-location="{{item}}" bindtap='pickUp'>
+      <text class="pick_name">{{item.chain_store_name}}</text>
+      <view class="pick_time">
+          <image src='/image/pick_time.jpg' class="pick_time_a"></image>
+          <text>{{item.workertime}}</text>
+          <text>{{item.distance}}km</text>
+      </view>
+      <view class="pick_address">
+          <image src='/image/pick_address.jpg' class="pick_address_b"></image>
+          <text>{{item.address}}</text>
+      </view>
+      <view class="pick_look">
+          <text class="">查看详情</text>
+          <image src='/image/pick_right.jpg' class="pick_right"></image>
+      </view>
+  </view>
+</view>

@@ -1,0 +1,30 @@
+<view class="main">
+    <view class="form-box">
+    <form bindsubmit="formSubmit" report-submit="true">
+      <view>
+      <view class="addressName">
+        <text>您的姓名:</text>
+        <input type="text" name = "name" value="{{dizhiList.RecvName}}" focus="{{focus}}"/>
+      </view>
+      <view  class="addressName">
+      <text>联系方式:</text>
+        <input name="phone" type="number" value="{{dizhiList.RecvPhone}}"  focus="{{focus}}"/>
+      </view>
+      <view  class="addressName">
+        <text>所在地区:</text>
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}"> 
+        {{multiArray[0][multiIndex[0]]}} {{multiArray[1][multiIndex[1]]}}
+        <input name="city" type="hidden" hidden='true'  class="address_city" value="{{multiArray[0][multiIndex[0]]}} {{multiArray[1][multiIndex[1]]}}"/>
+        <view class="_xz">请选择</view>
+        <image src='/image/address_right.png'></image>
+        </picker>       
+    </view>
+      <view class="addressName">
+      <text id="address_xx">详细地址:</text>
+        <input name="door" type="text" value='{{Area}}'  focus="{{focus}}"/>
+      </view>
+    </view>
+    <button formType="submit" class="address_success">保存</button>
+    </form>
+  </view>
+</view>

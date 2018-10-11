@@ -1,0 +1,29 @@
+<view class = "add_top">
+</view>
+<view class = "item" wx:for="{{addressList}}"  wx:key="index">
+  <view class = "address" bindtap="toCleanOrder" data-index="{{item.index}}" data-id="{{item.Id}}" data-name="{{item.RecvName}}" data-phone="{{item.RecvPhone}}" data-addr="{{item.RecvAddr}}">
+  <!-- <view wx:if="{{selectIndex}}">
+    <image src ="../../../image/check.jpg"  mode="widthFix"/> 
+  </view>
+  <view wx:else>
+    <image src ="../../../image/uncheck.png"  mode="widthFix"/> 
+  </view> -->
+  <view class = "info">
+    <text>{{item.RecvName}}，{{item.RecvPhone}}</text>
+    <text>{{item.RecvAddr}}</text>
+  </view>
+ </view>
+  <view bindtap='redact' class='redact' data-index="{{index}}"  data-id="{{item.Id}}" mode = "widthFix">
+        编辑
+      </view>
+    <view bindtap='rmvaddr' class='update'>
+    <image src = "../../../image/sub.png" data-index="{{item.index}}"  data-id="{{item.Id}}" mode = "widthFix"/>
+    </view>
+</view>
+
+<view class = "add" bindtap = "addAddre">
+	<image  class = "left"src = "../../../image/6.png"
+    mode = "widthFix" /><view class = "text">新增个人地址</view>
+    <image class="right" src = "../../../image/right.png"
+    mode = "widthFix" />
+</view>

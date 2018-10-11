@@ -1,0 +1,7 @@
+<view class="main">
+<view class = "item" wx:for="{{bagList}}"  wx:key="index">
+  <view class = "address" data-id="{{item.Id}}">
+   <button size="mini" data-id="{{item.Id}}" data-index="{{index}}" class="orders-delete-btn" bindtap="choujiang">拆红包</button>
+ </view>
+</view>
+</view>

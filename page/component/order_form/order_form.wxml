@@ -1,0 +1,287 @@
+<!--page/component/order_form/order_form.wxml-->
+<view class="main">
+  <view class="avait" bindtap="tabFun">  
+    <view class="{{skip_d=='1'? 'active' : ''}}" id="tab-hd01" data-id="0">全部订单</view>  
+    <view class="{{skip_a=='1'? 'active' : ''}}" id="tab-hd02" data-id="1">待付款</view> 
+    <view class="{{skip_b=='1'? 'active' : ''}}" id="tab-hd03" data-id="2">已付款</view> 
+    <view class="{{skip_c=='1'? 'active' : ''}}" id="tab-hd04" data-id="3">已完成</view>
+  </view>  
+  <view class="message">
+    <view class="right-item {{skip_d=='1'? 'active' : ''}}">
+    <view class="orders-box">
+        <view wx:if="{{hasOrder}}">
+          <view class="orders-list" wx:for="{{orders}}" wx:key="{{index}}"  bindtap='order_spread' data-index="{{index}}">
+          <view class="orders-number">订单编号:{{item.OrderId}}</view>
+            <view class="shade" hidden="{{_flag}}">
+              <view class="pick_tishi">自提信息</view>
+              <view class="pick_name">
+                <text>门店名称:</text>
+                <text>{{item.ShopName}}</text>
+              </view>
+              <view class="pick_address">
+                <text>门店地址:</text>
+                <text>{{item.ShopAddr}}</text>                     
+              </view>
+              <view class="pick_phone">
+                <text>门店联系方式:</text>
+                <text>{{item.ShopPhone}}</text>                     
+              </view>
+            </view>
+            <view class="order_img" wx:if="{{item.selectPerson_a}}">
+              <view class="orders-detail" wx:for="{{item.AllGoods}}" wx:for-item="goods" wx:key="{{index}}">       
+                <image src="{{goods.GoodsImageUrl}}"></image>
+              </view>
+            </view>
+              <view class="order_img_a" wx:else bindtap='mySelect' style='background:{{_background}}'>
+                <view class="orders-detail_a" wx:for="{{item.AllGoods}}" wx:for-item="goods" wx:key="{{index}}">       
+                  <image src="{{goods.GoodsImageUrl}}"></image>
+                  <image src="{{goods.GoodsImageUrl}}"></image>
+                  <view class="">{{goods.GoodsName}}</view>
+                  <view class="">x {{goods.BuyCount}}</view>
+                  <text class="orders-status">￥{{goods.nPrice}}</text> 
+                </view>
+              </view> 
+            <view class="orders-footer">
+                  <view class="order_total" >订单合计</view>
+                   <view class="out-of-pocket" ><text class="orders-status" >￥{{item.nTotalPrice}}</text></view> 
+                  <view wx:if="{{item.dzf}}">
+                   <view class="orders-btn" catchtap="payOrders" data-id="{{item.OrderId}}">付款</view> 
+                </view>
+                <view wx:if="{{item.Zitishow}}" class="orders-status-btn-3" >
+                    <button class="orders-btn"  data-id="{{item.OrderId}}" catchtap='pickUp'>自提信息</button> 
+                  </view>
+                  <view wx:if="{{item.Peisongshow}}" class="orders-status-btn-3" >
+                     <view class="orders-btn" catchtap="queryeleorder" data-id="{{item.OrderId}}">查看物流</view>
+                  </view>
+                  
+                  <view wx:if="{{item.tk}}">
+                    <view size="mini" catchtap="refund" data-id="{{item.OrderId}}" class="refund" data-index="{{index}}">退款</view>
+                  </view> 
+                  <!-- <view wx:if="{{item.OrderState == 100}}">
+                    <button size="mini" catchtap="refund" data-id="{{item.OrderId}}" class="refund" disabled>退款中</button>
+                  </view>
+                  <view wx:if="{{item.OrderState == 101}}">
+                    <button size="mini" catchtap="refund" data-id="{{item.OrderId}}" class="refund" disabled>已退款</button> 
+                  </view>   -->
+                   <view class="orders-delete-btn" wx:if='{{!item.tk}}'>
+                    <view size="mini" data-id="{{item.OrderId}}" catchtap="deleteOrders" data-index="{{index}}">取消</view>
+                  </view> 
+              </view>
+              <view class='otherFeiyun'>
+                <view class='redbao'>红包抵扣: ￥{{item.RedPackMoney}}</view>
+                <view class='yunfei'>运费: ￥{{item.YunFei}}</view>
+              </view> 
+            </view>
+        </view>
+        <view wx:else>
+          <view class='no-orders'>您还没有订单～</view>
+        </view>
+        <view class="modal-mask" wx:if="{{showMask}}"></view>
+        <view class="modal-dialog" bindtap="wldetail" wx:if="{{showWLModal}}" style="">
+        <view class='wl'>
+          <view class="modal-dialog-pro-name">姓名</view>
+          <view class="modal-dialog-pro-value">{{wlInfo.carrier_driver_name}}</view></view>
+          <view class='wl'>
+            <view class="modal-dialog-pro-name">电话</view>
+            <view class="modal-dialog-pro-value" bindtap='callPhone' data-phone='{{wlInfo.carrier_driver_phone}}'>{{wlInfo.carrier_driver_phone}}   </view>
+          </view>
+          <view class="gb">
+            <button bindtap='onclosewl' type='default' size='mini'>关闭</button>
+          </view>
+        </view>
+      </view> 
+    </view>
+    <view class="right-item {{skip_a=='1'? 'active' : ''}}">
+      <!--未付款-->
+      <view class="orders-box">
+        <view wx:if="{{hasNoOrder}}">
+          <view class="orders-list" wx:for="{{noOrders}}" wx:key="{{index}}" bindtap='noOrders_spread' data-index="{{index}}">
+          <view class="orders-number">订单编号:{{item.OrderId}}</view>
+          <view class="order_img" wx:if="{{item.selectPerson_a}}" >
+          <view class="orders-detail" wx:for="{{item.AllGoods}}" wx:for-item="goods" wx:key="{{index}}">       
+            <image src="{{goods.GoodsImageUrl}}"></image>
+          </view>
+        </view>
+       <view class="order_img_a" wx:else bindtap='mySelect' style='background:{{_background}}'>
+          <view class="orders-detail_a" wx:for="{{item.AllGoods}}" wx:for-item="goods" wx:key="{{index}}">       
+            <image src="{{goods.GoodsImageUrl}}"></image>
+            <image src="{{goods.GoodsImageUrl}}"></image>
+            <view class="">{{goods.GoodsName}}</view>
+            <view class="">x {{goods.BuyCount}}</view>
+            <text class="orders-status">￥{{goods.nPrice}}</text> 
+          </view>
+        </view>
+        <view class="orders-footer">
+          <view class="order_total" >订单合计</view>
+          <view class="out-of-pocket" >
+            <text class="orders-status">￥{{item.nTotalPrice}}</text>
+          </view> 
+          <view wx:if="{{item.OrderState == 0}}">
+            <view class="orders-btn" catchtap="payOrders" data-id="{{item.OrderId}}">付款</view>
+          </view>
+          <view class="orders-delete-btn"  class="orders-delete-btn">
+            <view size="mini" data-id="{{item.OrderId}}" catchtap="deleteOrders_hide" data-index="{{index}}">取消</view>
+          </view>
+        </view>
+        <view class='otherFeiyun'>
+          <view class='redbao'>红包抵扣: ￥{{item.RedPackMoney}}</view>
+          <view class='yunfei'>运费: ￥{{item.YunFei}}</view>
+        </view> 
+      </view>
+    </view> 
+    <view wx:else>
+      <view class='no-orders'>没有哦亲</view>
+    </view>
+  </view>
+</view>
+<!--已经付款-->              
+<view class="right-item {{skip_b=='1'? 'active' : ''}}">
+  <view class="orders-box">
+    <view wx:if="{{delivery}}">
+      <view class="orders-list" wx:for="{{allDelivery}}" wx:key="{{index}}" bindtap='allDelivery_spread' data-index="{{index}}">
+        <view class="orders-number">订单编号:{{item.OrderId}}</view>
+        <view class="shade" hidden="{{_flag}}">
+          <view class="pick_tishi">自提信息</view>
+          <view class="pick_name">
+            <text>门店名称:</text>
+            <text>{{item.ShopName}}</text>
+          </view>
+          <view class="pick_address">
+            <text>门店地址:</text>
+            <text>{{item.ShopAddr}}</text>                     
+          </view>
+          <view class="pick_phone">
+            <text>门店联系方式:</text>
+            <text>{{item.ShopPhone}}</text>                     
+          </view>
+        </view>
+        <view class="order_img" wx:if="{{item.selectPerson_a}}">
+          <view class="orders-detail" wx:for="{{item.AllGoods}}" wx:for-item="goods" wx:key="{{index}}">       
+            <image src="{{goods.GoodsImageUrl}}"></image>
+           </view>
+        </view>
+        <view class="order_img_a" wx:else bindtap='mySelect' style='background:{{_background}}'>
+          <view class="orders-detail_a" wx:for="{{item.AllGoods}}" wx:for-item="goods" wx:key="{{index}}">       
+            <image src="{{goods.GoodsImageUrl}}"></image>
+            <image src="{{goods.GoodsImageUrl}}"></image>
+            <view class="">{{goods.GoodsName}}</view>
+            <view class="">x {{goods.BuyCount}}</view>
+            <text class="orders-status">￥{{goods.nPrice}}</text> 
+          </view>
+        </view>
+        <view class="orders-footer">
+          <view class="order_total" >订单合计</view>
+          <view class="out-of-pocket" ><text class="orders-status" >￥{{item.nTotalPrice}}</text></view>
+          <view wx:if="{{item.Zitishow}}" class="orders-status-btn-3" >
+            <view class="orders-btn"  data-id="{{item.OrderId}}" catchtap='pickUp'>自提信息</view> 
+          </view> 
+          <view wx:if="{{item.Peisongshow}}" class="orders-status-btn-3" >
+            <view class="orders-btn" catchtap="queryeleorder" data-id="{{item.OrderId}}">查看物流</view>
+          </view>
+          
+          <view>
+            <view size="mini" catchtap="refund" data-id="{{item.OrderId}}" disabled='{{disabled}}'  class="refund" data-index='{{index}}'>退款</view>
+          </view> 
+          <!-- <view wx:if="{{item.OrderState == 100}}">
+            <button size="mini" catchtap="refund" data-id="{{item.OrderId}}" class="refund" disabled>退款中</button>
+          </view>
+          <view wx:if="{{item.OrderState == 101}}">
+            <button size="mini" catchtap="refund" data-id="{{item.OrderId}}" class="refund" disabled>已退款</button> 
+          </view>   -->
+        </view>
+        <view class='otherFeiyun'>
+          <view class='redbao'>红包抵扣: ￥{{item.RedPackMoney}}</view>
+          <view class='yunfei'>运费: ￥{{item.YunFei}}</view>
+        </view>
+      </view>
+    </view> 
+    <view wx:else>
+      <view class='no-orders'>没有哦亲亲</view>
+    </view>
+    <view class="modal-mask" wx:if="{{showMask}}"></view>
+    <view class="modal-dialog" bindtap="wldetail" wx:if="{{showWLModal}}" style="">
+      <view class='wl'>
+        <view class="modal-dialog-pro-name">姓名</view>
+        <view class="modal-dialog-pro-value">{{wlInfo.carrier_driver_name}}</view></view>
+        <view class='wl'><view class="modal-dialog-pro-name">电话</view>
+        <view class="modal-dialog-pro-value" bindtap='callPhone' data-phone='{{wlInfo.carrier_driver_phone}}'>{{wlInfo.carrier_driver_phone}}</view></view>
+        <view class="gb"><button bindtap='onclosewl' type='default' size='mini'>关闭</button></view>
+      </view>
+    </view>
+  </view>
+  <!--已完成-->
+  <view class="right-item {{skip_c=='1'? 'active' : ''}}">          
+    <view class="orders-box">
+      <view wx:if="{{wancheng}}">
+        <view class="orders-list" wx:for="{{allDone}}" wx:key="{{index}}" bindtap='allDone_spread' data-index="{{index}}">
+        <view class="orders-number">订单编号:{{item.OrderId}}</view>
+        <view class="order_img" wx:if="{{item.selectPerson_a}}">
+          <view class="orders-detail" wx:for="{{item.AllGoods}}" wx:for-item="goods" wx:key="{{index}}">       
+            <image src="{{goods.GoodsImageUrl}}"></image>
+          </view>
+        </view>
+        <view class="order_img_a" wx:else bindtap='mySelect' style='background:{{_background}}'>
+        <view class="orders-detail_a" wx:for="{{item.AllGoods}}" wx:for-item="goods" wx:key="{{index}}">       
+          <image src="{{goods.GoodsImageUrl}}"></image>
+          <image src="{{goods.GoodsImageUrl}}"></image>
+          <view class="">{{goods.GoodsName}}</view>
+          <view class="">x {{goods.BuyCount}}</view>
+          <text class="orders-status">￥{{goods.nPrice}}</text> 
+        </view>
+      </view>
+      <view class="orders-footer">
+        <view wx:if="{{item.OrderState == 1 || item.OrderState == 2 ||item.OrderState == 3}}">
+          <text class='orders-text'>已经支付,等待接单</text>
+        </view>
+        <view wx:if="{{item.OrderState == 4}}">
+          <text class="orders-text">系统已接单</text>
+        </view>
+        <view wx:if="{{item.OrderState == 5}}">
+          <text class="orders-text">已分配骑手</text>
+        </view>
+        <view wx:if="{{item.OrderState == 6}}">
+          <text class="orders-status-text">骑手已到店</text>
+        </view>
+        <view wx:if="{{item.OrderState == 7}}">
+          <text class="orders-text">配送中</text>
+        </view>
+        <view wx:if="{{item.OrderState == 8}}" class='.orders-status-text'>
+          <text>已送达</text>
+        </view>
+        <view wx:if="{{item.OrderState == 9}}">
+          <text class=".orders-status-text"> 配送异常</text>
+        </view>
+        <!-- <view wx:if="{{item.Zitishow}}" class="orders-status-btn-3" >
+          <view class="orders-btn" catchtap="queryeleorder" data-id="{{item.OrderId}}">查看物流</view>
+        </view>
+        <view wx:if="{{!item.Zitishow}}" class="orders-status-btn-3" >
+          <view class="orders-btn"  data-id="{{item.OrderId}}" catchtap='pickUp'>自提信息</view> 
+        </view> -->
+        <view class="orders-delete-btn"  class="orders-delete-btn">
+          <text size="mini" data-id="{{item.OrderId}}" catchtap="deleteOrders" data-index="{{index}}">删除</text>
+        </view>
+      </view>
+      <view class='otherFeiyun'>
+        <view class='redbao'>红包抵扣: ￥{{item.RedPackMoney}}</view>
+        <view class='yunfei'>运费: ￥{{item.YunFei}}</view>
+      </view> 
+    </view>                    
+  </view> 
+  <view wx:else>
+    <view class='no-orders'>没有哦亲亲亲</view>
+  </view>
+  <view class="modal-mask" wx:if="{{showMask}}"></view>
+  <view class="modal-dialog" bindtap="wldetail" wx:if="{{showWLModal}}" style="">
+  <view class='wl'>
+    <view class="modal-dialog-pro-name">姓名</view>
+    <view class="modal-dialog-pro-value">{{wlInfo.carrier_driver_name}}</view></view>
+    <view class='wl'>
+      <view class="modal-dialog-pro-name">电话</view>
+      <view class="modal-dialog-pro-value" bindtap='callPhone' data-phone='{{wlInfo.carrier_driver_phone}}'>{{wlInfo.carrier_driver_phone}}</view></view>
+      <view class="gb"><button bindtap='onclosewl' type='default' size='mini'>关闭</button></view>
+    </view>
+  </view>
+</view>
+</view> 
+</view>
+<view class="bg" hidden="{{_flag}}" bindtap='b' scroll-with-animation="true"></view> 

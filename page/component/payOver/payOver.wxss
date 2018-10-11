@@ -1,0 +1,104 @@
+.modal-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 9000;
+  color: #fff;
+}
+
+.modal-dialog {
+ width:540rpx;
+ overflow:hidden;
+ position:fixed;
+ top:35%;
+ left:0;
+ z-index:9999;
+ margin:-180rpx 105rpx;
+ height:580rpx;
+}
+
+.modal-dialog .label{
+  top:56%;
+  left:23%;
+  color:ghostwhite;
+}
+.modal-dialog .hb1{
+ color:ghostwhite;
+ position:fixed;
+ margin:-30rpx 237rpx;
+ font-size:50rpx;
+}
+
+.modal-dialog .hb2{
+ color:ghostwhite;
+ position:fixed;
+ margin:60rpx 310rpx;
+ font-size:50rpx;
+}
+
+.money{
+ color:ghostwhite;
+ position:fixed;
+ margin:317rpx 180rpx;
+ font-size:50rpx;
+}
+.yuan{
+ color:ghostwhite;
+ position:fixed;
+ margin:314rpx 280rpx;
+ font-size:50rpx;
+}
+.modal-dialog .go{
+ top:69%;
+ left:32%;
+ color:#030303;
+ font-size:32rpx;
+}
+
+.message{
+  padding-top: 50rpx;
+  font-size: 36rpx;
+  color: #030303;
+  text-align: center;
+}
+.payOver_but{
+  width:357rpx;
+margin:10rpx auto;
+height:100rpx;
+
+}
+.gobuy{
+  width:170rpx;
+height:66rpx;
+float:left;
+background:#67c23a;
+color:#fff;
+border-radius:10rpx;
+line-height:66rpx;
+font-size:35rpx;
+text-align:center;
+
+}
+.gouser{
+  width:170rpx;
+height:66rpx;
+float:right;
+background:#67c23a;
+color:#fff;
+border-radius:10rpx;
+font-size:35rpx;
+line-height:66rpx;
+text-align:center;
+
+}
+.images{
+width:45rpx;
+height:45rpx;
+position:fixed;
+margin:600rpx 240rpx;
+}

@@ -1,0 +1,21 @@
+ <view class="main">
+   <view class="message">{{message}}</view>
+   <view class="payOver_but">
+    <!-- <button size="mini" type="default" class="gobug"  bindtap='gobuy'>继续购物</button>  -->
+    <navigator class="gobuy" open-type="switchTab" url="/page/component/category/category">继续购物</navigator> 
+    <view class="gouser" bindtap='lookOrder'>查看订单</view>
+    <!-- <button class="gouser" size="mini"  type="default" bindtap='gouser'>查看订单</button>  -->
+   </view>
+    <view class="modal-mask" wx:if="{{showMask}}"></view>
+    <view class="modal-dialog" bindtap="choujiang" wx:if="{{showHBModal}}" style="background: url('https://mp.wavehops.com/appimg/hb.png') no-repeat;background-size:100% 100%;">
+     <text class="modal-dialog hb1">恭喜您获得</text>
+     <text class="modal-dialog hb2">红包</text>
+     <image src='../../../image/gb.png' class='images' bindtap='onConfirm'></image>
+    </view>
+    <view class="modal-dialog" wx:if="{{showKBModal}}" style="background: url('https://mp.wavehops.com/appimg/kb.png') no-repeat;background-size:100% 100%;">
+      <text class="modal-dialog label">恭喜您获得</text>
+      <text class="money">{{money}}</text>
+      <text class="yuan">元</text>
+      <text class="modal-dialog go" bindtap='onConfirm'>关闭</text>
+    </view>
+</view>
